@@ -60,6 +60,7 @@ const categories = [
     ]
   }
 ]
+//Step 1 and 2 replace all the HTML inside the board
 
 const board = document.getElementById('board')
 
@@ -83,40 +84,19 @@ for(const category of categories){
 
 board.innerHTML = categoryGroup.join(" ")
 
-const $buttons = document.querySelectorAll('.cell')
+//Step 3 When click any cell, insert the cells clue and answer into the overlay and add the class show to the overlay.
 
-function show () {
+const $button = document.querySelectorAll('.cell')
+
+function show (e) {
   var overlay = document.getElementById("overlay");
   overlay.classList.add("show");
+  if(e.target.classList.contains('buttons')){
 
+  }
 }
 
 
-for (let $button of $buttons) {
-  $button.addEventListener('click',show)
-}
-
-
-
-
-//loopoverbuttons//addtheeventlistener
-
-
-  
-// Clicking on any cell on the board should insert the cells clue and answer into the overlay and add the class show to the overlay.
-
-// If this cell is clicked...
-
-// <div class="cell" data-clue="Monica & Chandler" data-answer="What is Friends">200</div>
-
-// The overlay should look like this
-
-// <div id="overlay" class="overlay show">
-//   <div id="clue" class="clue">Monica & Chandler</div>
-
-//   <div class="responses">
-//     <div id="answer" class="answer">What is Friends</div>
-//     <button id="close" class="button close">Show Answer</button>
-//   </div>
-
-// </div>
+for (let $buttons of $button) {
+  $buttons.addEventListener('click',show)} {
+  }
