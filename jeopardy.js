@@ -100,7 +100,8 @@ board.addEventListener('click', function (e) {
   $overlay.classList.add('show')
 })
 
-// Event Listener to button Show Answer and Close Answer
+// Step 4 Clicking on the 'Show Answer' button should add the class show on the answer and switch the text of the button to 'Close'. 
+// Clicking on the button again should remove the class of show from the answer and the overlay and change the text of the button to 'Show Answer'.
 $showAnswer.addEventListener('click', function (e) {
   $answers.classList.toggle('show')
   if ($answers.classList.contains('show')) {
@@ -110,3 +111,6 @@ $showAnswer.addEventListener('click', function (e) {
     $showAnswer.textContent = 'Show Answer'
   }
 })
+
+
+
