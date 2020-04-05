@@ -60,7 +60,7 @@ const categories = [
     ]
   }
 ]
-//Step 1 and 2 replace all the HTML inside the board
+// //Step 2 replace all the HTML inside the board
 
 const board = document.getElementById('board')
 
@@ -69,7 +69,6 @@ board.innerHTML = ''
 const categoryGroup = []
 
 for(const category of categories){
-
   categoryGroup.push(`<div class="category">`)
   categoryGroup.push(`<div class="title">${category.title}</div>`)
   const clues = category.clues
@@ -77,26 +76,37 @@ for(const category of categories){
       for(const clue of clues){
       categoryGroup.push(`<div class="cell" data-clue="${clue.text}" data-answer="${clue.answer}">${clue.value}</div>`)
     }
-
     categoryGroup.push(`</div>`)
-
 }
 
 board.innerHTML = categoryGroup.join(" ")
 
 //Step 3 When click any cell, insert the cells clue and answer into the overlay and add the class show to the overlay.
-
+// retrieve buttons
 const $button = document.querySelectorAll('.cell')
+const $showAnswer = document.getElementById('close')
 
-function show (e) {
-  var overlay = document.getElementById("overlay");
-  overlay.classList.add("show");
-  if(e.target.classList.contains('buttons')){
+// retrieve elements
+const $answers = document.getElementById('answer')
+const $overlay = document.getElementById('overlay')
+const $clues = document.getElementById('clue')
 
+// Event Listener to insert the cells clue and answer into overlay and add the class show to the overlay.
+board.addEventListener('click', function (e) {
+  let clickedClue = e.target.dataset.clue
+  $clues.textContent = clickedClue
+  let clickedAnswer = e.target.dataset.answer
+  $answers.textContent = clickedAnswer
+  $overlay.classList.add('show')
+})
+
+// Event Listener to button Show Answer and Close Answer
+$showAnswer.addEventListener('click', function (e) {
+  $answers.classList.toggle('show')
+  if ($answers.classList.contains('show')) {
+    $showAnswer.textContent = 'Close'
+  } else {
+    $overlay.classList.remove('show')
+    $showAnswer.textContent = 'Show Answer'
   }
-}
-
-
-for (let $buttons of $button) {
-  $buttons.addEventListener('click',show)} {
-  }
+})
